@@ -117,7 +117,7 @@ if __name__ == "__main__":
     # Unfreeze_batch_size batch_size of the model after unfreezing
     #------------------------------------------------------------------#
     UnFreeze_Epoch      = 100
-    Unfreeze_batch_size = 2
+    Unfreeze_batch_size = 8
     #------------------------------------------------------------------#
     # Freeze_Train whether to do freeze training or not
     # Default to freeze the trunk training first and then unfreeze the training.
@@ -228,7 +228,7 @@ if __name__ == "__main__":
     # model = R2U_Net(img_ch=3, output_ch=num_classes, t=2).train()
     # model = DeepLab(num_classes=num_classes, backbone="xception", downsample_factor=8, pretrained=False).train()
     # model = R2AttU_Net(img_ch=3, output_ch=num_classes, t=2).train()
-    model = Unetnew(num_classes=num_classes, pretrained=pretrained, backbone=backbone).train() ##一组消融
+    model = Unetnew(num_classes=num_classes, pretrained=pretrained, backbone=backbone).train() ##One set of ablation experiments
     ######################################################################
     ######################################################################
 
