@@ -35,16 +35,7 @@ class UnetDataset(Dataset):
         # Data enhancement
         #-------------------------------#
 
-        jpg, png    = self.get_random_data(jpg, png, self.input_shape, random = self.train)
 
-        jpg         = np.transpose(preprocess_input(np.array(jpg, np.float64)), [2,0,1])
-        png         = np.array(png)
-        png[png >= self.num_classes] = self.num_classes
-        #-------------------------------------------------------#
-        # Converted into one_hot form
-        # The +1 is needed here because some of the labels in the voc dataset have a white border.
-        # We need to ignore the white-edge part, the +1 is to make it easier to ignore.
-        #-------------------------------------------------------#
         seg_labels  = np.eye(self.num_classes + 1)[png.reshape([-1])]
         seg_labels  = seg_labels.reshape((int(self.input_shape[0]), int(self.input_shape[1]), self.num_classes + 1))
 
