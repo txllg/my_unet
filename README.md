@@ -1,6 +1,5 @@
 # my_unet
 This study presents a deep learning model based on the U-Net architecture designed to address the challenge of accurate polyp segmentation in colonoscopy images.
-Due to GitHub upload file size limitations, the weight parameters obtained after training could not be uploaded, if you want to get the weight parameters after training, you can get them through the following link：https://figshare.com/s/a6439814656ab8dcbaae
 # Project Catalog Structure and Documentation Explanation
 ## **my_unet**<br/>
 │   **unet.py**            : Helper scripts to support neural network training.<br/>
