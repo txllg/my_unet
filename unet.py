@@ -157,6 +157,31 @@ class Unet(object):
             # ---------------------------------------------------#
             pr = pr.argmax(axis=-1)
 
+            # Grad-CAM
+            class SemanticSegmenttationTarget:
+                def __init__(self, category, mask):
+                    self.category = category
+                    self.mask = torch.from_numpy(mask)
+                    if torch.cuda.is_available():
+                        self.mask = self.mask.cuda()
+
+                def __call__(self, model_output):
+                    return (model_output[self.category, :, :] * self.mask).sum()
+
+            normalized_mask = torch.nn.functional.softmax(pr, dim=0).cpu()
+            plaque_category = 1
+            plaque_mask = normalized_mask[:, :, :].argmax(axis=0).detach().cpu().numpy()
+            plaque_mask_float = np.float32(plaque_mask == plaque_category)
+            target_layers = [self.net]
+            targets = [SemanticSegmenttationTarget(plaque_category, plaque_mask_float)]
+
+            torch.set_grad_enabled(True)
+
+            cam = GradCAM(self.net, target_layers)
+            grayscalse_cam = cam(input_tensor=images, targets=targets)[0, :]
+            cam_image = show_cam_on_image(origin_image, grayscalse_cam, use_rgb=True)
+
+
         # ---------------------------------------------------------#
         #   count
         # ---------------------------------------------------------#
