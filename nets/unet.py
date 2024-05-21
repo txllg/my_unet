@@ -1953,7 +1953,7 @@ class UNet3Plus(nn.Module):
         return F.sigmoid(d1)
 
 class Unetnew(nn.Module):## A set of ablation experiments
-    def __init__(self, num_classes = 2, pretrained = False, backbone = 'vgg',l=7, k=7):
+    def __init__(self, num_classes = 2, pretrained = False, backbone = 'resnet50',l=7, k=7):
         super(Unetnew, self).__init__()
         if backbone == 'vgg':
             self.vgg    = VGG16(pretrained = pretrained)
