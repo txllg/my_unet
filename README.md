@@ -1,5 +1,5 @@
 # my_unet
-This study presents a deep learning model based on the U-Net architecture designed to address the challenge of accurate polyp segmentation in colonoscopy images.
+This study presents a deep learning model based on the U-Net architecture designed to address the challenge of accurate polyp segmentation in colonoscopy images. The link to my zenodo repository is below:[![DOI](https://zenodo.org/badge/775984203.svg)](https://zenodo.org/doi/10.5281/zenodo.11418329)
 # Project Catalog Structure and Documentation Explanation
 ## **my_unet**<br/>
 │   **unet.py**            : Helper scripts to support neural network training.<br/>
